@@ -26,11 +26,15 @@ public class Exercises {
         return list.indexOf(item);
       }
     }
-    
+
     return -1;
   }
 
   public int findMeFaster(ArrayList<Integer> list, int target) {
+    if (list == null) {
+      
+    }
+    
     return -1;
   }
 
