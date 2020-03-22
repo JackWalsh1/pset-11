@@ -45,14 +45,12 @@ public class Exercises {
     while (startIndex <= endIndex) {
       midIndex = (startIndex + endIndex) / 2;
 
-      int potentialTarget = list.get(midIndex);
-
-      if (potentialTarget == target) {
-        return midIndex;
-      } else if (potentialTarget > target) {
+      if (list.get(midIndex) < target) {
         startIndex = midIndex + 1;
-      } else if (potentialTarget < target) {
+      } else if (list.get(midIndex) > target) {
         endIndex = midIndex - 1;
+      } else {
+        return midIndex;
       }
     }
 
