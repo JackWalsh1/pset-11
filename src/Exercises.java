@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.*;
 
 public class Exercises {
 
@@ -32,9 +33,29 @@ public class Exercises {
 
   public int findMeFaster(ArrayList<Integer> list, int target) {
     if (list == null) {
-      //string
+      return -1;
     }
-    
+
+    Collections.sort(list);
+
+    int startIndex = 0;
+    int endIndex = list.size() - 1;
+    int midIndex = 0;
+
+    while (startIndex <= endIndex) {
+      midIndex = (startIndex + endIndex) / 2;
+
+      int potentialTarget = list.get(midIndex);
+
+      if (potentialTarget == target) {
+        return midIndex;
+      } else if (potentialTarget > target) {
+        startIndex = midIndex + 1;
+      } else if (potentialTarget < target) {
+        endIndex = midIndex - 1;
+      }
+    }
+
     return -1;
   }
 
