@@ -32,7 +32,7 @@ public class Exercises {
 
   public int findMeFaster(ArrayList<Integer> list, int target) {
     if (list == null) {
-      
+      //string
     }
     
     return -1;
