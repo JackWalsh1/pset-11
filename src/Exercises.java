@@ -4,7 +4,7 @@ import java.util.*;
 public class Exercises {
 
   public int findMe(int[] list, int target) {
-    if (list == null) {
+    if (list == null || list.length == 0) {
       return -1;
     }
 
@@ -18,7 +18,7 @@ public class Exercises {
   }
 
   public int findMe(ArrayList<String> list, String target) {
-    if (list == null) {
+    if (list == null || list.size() == 0) {
       return -1;
     }
 
@@ -32,8 +32,8 @@ public class Exercises {
   }
 
   public int findMeFaster(ArrayList<Integer> list, int target) {
-    if (list == null) {
-      return -1;
+    if (list == null || list.size() == 0) {
+        return -1;
     }
 
     Collections.sort(list);
@@ -58,7 +58,7 @@ public class Exercises {
   }
 
   public int findMeFaster(String[] list, String target) {
-    if (list == null) {
+    if (list == null || list.length == 0) {
       return -1;
     }
 
@@ -85,27 +85,27 @@ public class Exercises {
 
   public int[] bubble(int[] list, boolean ascending) {
     
-    if (list == null) {
+    if (list == null || list.length == 0) {
       return null;
     }
 
     boolean changesMade = false;
-    int temp = 0;
 
     while(changesMade) {
-      for (int i = 1; i < list.length; i++) {
-        if (ascending) {
-          if (list[i - 1] > list[i]) {
-            temp = list[i - 1];
-            list[i - 1] = list[i];
-            list[i] = temp;
+      changesMade = false;
+      for (int i = 0; i < list.length - 1; i++) {
+        if (ascending) { //ascending
+          if (list[i] > list[i + 1]) {
+            int temp = list[i];
+            list[i] = list[i + 1];
+            list[i + 1] = temp;
             changesMade = true;
           }
-        } else {
-          if (list[i - 1] < list[i]) {
-            temp = list[i - 1];
-            list[i - 1] = list[i];
-            list[i] = temp;
+        } else { //descending
+          if (list[i] < list[i + 1]) {
+            int temp = list[i];
+            list[i] = list[i + 1];
+            list[i + 1] = temp;
             changesMade = true;
           }
         }
