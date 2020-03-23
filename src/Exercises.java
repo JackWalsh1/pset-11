@@ -234,8 +234,7 @@ public class Exercises {
 				list[n - i - 1] = t;
 			}
 		}
-
-		return list;
+		return list; 
   }
 
   public int[] selection(int[] list, boolean ascending) {
@@ -292,7 +291,7 @@ public class Exercises {
               list.set(smallestIndex, head);
           }
       }
-      return list;
+      return list; 
   }
 
   public ArrayList<Integer> merge(ArrayList<Integer> list, boolean ascending) {        
