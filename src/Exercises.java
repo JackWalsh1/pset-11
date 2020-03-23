@@ -367,11 +367,74 @@ public ArrayList<Integer> combine(ArrayList<Integer> firstList, ArrayList<Intege
         combination.add(firstList.get(firstLocation));
         firstLocation++;
     }
-
     return combination;
-}
+  }
 
   public String[] merge(String[] list, boolean ascending) {
-    return null;
+    if (list == null) {
+        return null;
+    }
+
+    if (list.length == 1) {
+        return list;
+    }
+
+    String[] firstList = new String[list.length/2];
+    String[] secondList = new String[(list.length - (list.length/2))];
+
+    for (int i = 0; i < (list.length/2); i++) {
+        firstList[i] = list[i];
+    }
+    for (int i = 0; i < secondList.length; i++) {
+        secondList[i] = list[i + (list.length/2)];
+    }
+
+    String[] combined = combine(merge(firstList, ascending), merge(secondList, ascending), ascending);
+    return combined;
+  }
+
+  public String[] combine(String[] firstList, String[] secondList, boolean ascending) {
+    String[] combination = new String[firstList.length + secondList.length];
+    int firstLocation = 0;
+    int secondLocation = 0;
+    int combineLocation = 0;
+
+    while (firstLocation < firstList.length && secondLocation < secondList.length) {
+        if (ascending) {
+            if (firstList[firstLocation].compareTo(secondList[secondLocation]) < 0) {
+                combination[combineLocation] = firstList[firstLocation];
+                firstLocation++;
+                combineLocation++;
+            } else {
+                combination[combineLocation] = secondList[secondLocation];
+                secondLocation++;
+                combineLocation++;
+            }
+        } else {
+            if (firstList[firstLocation].compareTo(secondList[secondLocation]) > 0) {
+                combination[combineLocation] = firstList[firstLocation];
+                firstLocation++;
+                combineLocation++;
+            } else {
+                combination[combineLocation] = secondList[secondLocation];
+                secondLocation++;
+                combineLocation++;
+            }
+        }
+    }        
+
+    while (firstLocation == firstList.length && secondLocation != secondList.length) {
+        combination[combineLocation] = secondList[secondLocation];
+        secondLocation++;
+        combineLocation++;
+    }
+
+    while (secondLocation == secondList.length && firstLocation != firstList.length) {
+        combination[combineLocation] = firstList[firstLocation];
+        firstLocation++;
+        combineLocation++;
+    }
+
+    return combination;
   }
 }
