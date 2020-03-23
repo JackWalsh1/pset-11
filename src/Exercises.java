@@ -115,6 +115,46 @@ public class Exercises {
   }
 
   public ArrayList<String> bubble(ArrayList<String> list, boolean ascending) {
+    if (list == null || list.size() == 0) {
+      return null;
+    }
+
+    int nullCounter = 0;
+    ArrayList<String> noNullList = new ArrayList<String>();
+    
+    for (int i = 0; i < list.size(); i++) {
+      if (list.get(i) == null) {
+        nullCounter++;
+      } else {
+        noNullList.add(list.get(i));
+      }
+    }
+
+    boolean changesMade = true;
+
+    while(changesMade) {
+      changesMade = false;
+      for (int i = 0; i < noNullList.size() - 1; i++) {
+        if (ascending) { //ascending
+          if (noNullList.get(i).compareTo(noNullList.get(i + 1)) > 0) {
+            String temp = noNullList.get(i);
+            noNullList.add(i, noNullList.get(i + 1));
+            noNullList.add(i + 1, temp);
+            changesMade = true;
+          }
+        } else { //descending
+          if (noNullList.get(i).compareTo(noNullList.get(i + 1)) < 0) {
+            String temp = noNullList.get(i);
+            noNullList.add(i, noNullList.get(i + 1));
+            noNullList.add(i + 1, temp);
+            changesMade = true;
+          }
+        }
+      }
+    }
+    return list;
+  }
+
     return null;
   }
 
