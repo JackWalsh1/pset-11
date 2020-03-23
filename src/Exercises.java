@@ -138,24 +138,26 @@ public class Exercises {
         if (ascending) { //ascending
           if (noNullList.get(i).compareTo(noNullList.get(i + 1)) > 0) {
             String temp = noNullList.get(i);
-            noNullList.add(i, noNullList.get(i + 1));
-            noNullList.add(i + 1, temp);
+            noNullList.set(i, noNullList.get(i + 1));
+            noNullList.set((i + 1), temp);
             changesMade = true;
           }
         } else { //descending
           if (noNullList.get(i).compareTo(noNullList.get(i + 1)) < 0) {
             String temp = noNullList.get(i);
-            noNullList.add(i, noNullList.get(i + 1));
-            noNullList.add(i + 1, temp);
+            noNullList.set(i, noNullList.get(i + 1));
+            noNullList.set((i + 1), temp);
             changesMade = true;
           }
         }
       }
     }
-    return list;
-  }
 
-    return null;
+    for (int i = 0; i < nullCounter; i++) {
+      noNullList.add(null);
+    }
+
+    return noNullList;
   }
 
   public ArrayList<Integer> insertion(ArrayList<Integer> list, boolean ascending) {
