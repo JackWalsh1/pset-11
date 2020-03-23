@@ -295,9 +295,81 @@ public class Exercises {
       return list;
   }
 
-  public ArrayList<Integer> merge(ArrayList<Integer> list, boolean ascending) {
-    return null;
-  }
+  public ArrayList<Integer> merge(ArrayList<Integer> list, boolean ascending) {        
+    if (list == null) {
+        return null;
+    }
+
+    if (list.size() == 1) {
+        return list;
+    }
+
+    int nullCounter = 0;
+    ArrayList<Integer> goodList = new ArrayList<Integer>();
+    for (int i = 0; i < list.size(); i++) {
+        if (list.get(i) == null) {
+            nullCounter++;
+        } else {
+            goodList.add(list.get(i));
+        }
+    }
+
+    ArrayList<Integer> firstList = new ArrayList<Integer>();
+    ArrayList<Integer> secondList = new ArrayList<Integer>();
+
+    for (int i = 0; i < (goodList.size()/2); i++) {
+        firstList.add(goodList.get(i));
+    }
+    for (int i = (goodList.size()/2); i < goodList.size(); i++) {
+        secondList.add(goodList.get(i));
+    }
+
+    ArrayList<Integer> combined = combine(merge(firstList, ascending), merge(secondList, ascending), ascending);
+
+    for (int i = 0; i < nullCounter; i++) {
+        combined.add(null);
+    }
+    
+    return combined;
+}
+
+public ArrayList<Integer> combine(ArrayList<Integer> firstList, ArrayList<Integer> secondList, boolean ascending) {
+    ArrayList<Integer> combination = new ArrayList<Integer>();
+    int firstLocation = 0;
+    int secondLocation = 0;
+  
+    while (firstLocation < firstList.size() && secondLocation < secondList.size()) {
+        if (ascending) {
+            if (firstList.get(firstLocation) < secondList.get(secondLocation)) {
+                combination.add(firstList.get(firstLocation));
+                firstLocation++;
+            } else {
+                combination.add(secondList.get(secondLocation));
+                secondLocation++;
+            }
+        } else {
+            if (firstList.get(firstLocation) > secondList.get(secondLocation)) {
+                combination.add(firstList.get(firstLocation));
+                firstLocation++;
+            } else {
+                combination.add(secondList.get(secondLocation));
+                secondLocation++;
+            }
+        }
+    }        
+
+    while (firstLocation == firstList.size() && secondLocation != secondList.size()) {
+        combination.add(secondList.get(secondLocation));
+        secondLocation++;
+    }
+
+    while (secondLocation == secondList.size() && firstLocation != firstList.size()) {
+        combination.add(firstList.get(firstLocation));
+        firstLocation++;
+    }
+
+    return combination;
+}
 
   public String[] merge(String[] list, boolean ascending) {
     return null;
