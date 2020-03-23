@@ -89,7 +89,7 @@ public class Exercises {
       return null;
     }
 
-    boolean changesMade = false;
+    boolean changesMade = true;
 
     while(changesMade) {
       changesMade = false;
@@ -111,7 +111,6 @@ public class Exercises {
         }
       }
     }
-
     return list;
   }
 
