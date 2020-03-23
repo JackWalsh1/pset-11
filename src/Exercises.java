@@ -291,7 +291,7 @@ public class Exercises {
               list.set(smallestIndex, head);
           }
       }
-      return list; 
+    return list; 
   }
 
   public ArrayList<Integer> merge(ArrayList<Integer> list, boolean ascending) {        
