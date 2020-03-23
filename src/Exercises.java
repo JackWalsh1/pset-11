@@ -161,8 +161,53 @@ public class Exercises {
   }
 
   public ArrayList<Integer> insertion(ArrayList<Integer> list, boolean ascending) {
-    return null;
+    if (list == null) {
+      return null;
+    }
+
+    int nullCounter = 0;
+    ArrayList<Integer> goodList = new ArrayList<Integer>();
+    for (int i = 0; i < list.size(); i++) {
+        if (list.get(i) == null) {
+            nullCounter++;
+        } else {
+            goodList.add(list.get(i));
+        }
+    }
+
+    if (ascending) {
+        int i = 0; 
+        while (i < goodList.size()) {
+            int j = i;
+            while (j > 0 && goodList.get(j - 1) > goodList.get(j)) {
+                int temp = goodList.get(j - 1);
+                goodList.set((j - 1), goodList.get(j));
+                goodList.set(j , temp);
+                j--;
+            }
+            i++;
+        }
+    } else {
+        int i = 0; 
+        while (i < goodList.size()) {
+            int j = i;
+            while (j > 0 && goodList.get(j - 1) < goodList.get(j)) {
+                int temp = goodList.get(j - 1);
+                goodList.set((j - 1), goodList.get(j));
+                goodList.set(j , temp);
+                j--;
+            }
+            i++;
+        }
+    }
+
+    for (int i = 0; i < nullCounter; i++) {
+        goodList.add(null);
+    }
+
+    return goodList;
   }
+  
 
   public String[] insertion(String[] list, boolean ascending) {
     return null;
